@@ -1,32 +1,38 @@
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom/client";
 
-//const element = React.createElement('hi', null, 'Hello React World');
-        const TodoList = () => {
-        return (
+const TodoList = () => {
+    const items = ['Install React', 'Study React', 'Use React', 'Build React App'];
+    return (
         <ul>
-        <li>Install React</li>
-        <li>Study React</li>
-        <li>Use React</li>
-        <li>Build React App</li>
+            {items.map((item, index) => (
+                <li key={index}>{item}</li>
+            ))}
         </ul>
-        );
-    };
-        const AppHeader = () =>{
-        return <h1>My Todo List</h1>;
-    };
-        const SearchPanel = () => {
-        return <input placeholder="search" />;
-    }
-        const App = () => {
-        return (
-        <div>
-        <AppHeader />
-        <SearchPanel />
-        <TodoList/>
-        </div>
-        );
-    }
-// const element = <App />;
+    );
+};
 
-        ReactDOM.render(<App />,
-        document.getElementById('root'));
+const AppHeader = () => {
+    return <h1>My Todo List</h1>;
+};
+
+const SearchPanel = () => {
+    const searchText = 'Type here to search';
+    const searchStyle = {
+        fontSize: '20px'
+    };
+    return <input style={searchStyle} placeholder={searchText} disabled={true} />;
+};
+
+const App = () => {
+    return (
+        <div>
+            <AppHeader />
+            <SearchPanel />
+            <TodoList />
+        </div>
+    );
+};
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
