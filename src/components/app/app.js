@@ -12,6 +12,8 @@ import './app.css';
 
     export  default  class  App extends Component {
 
+        maxId = 100;
+
 
         state = {
             todoData : [
@@ -35,6 +37,26 @@ import './app.css';
         };
     });
 };
+    addItem = (text) => {
+            // console.log('Added', text);
+            // generate id  &  add element in array
+        const newItem = {
+                label: text,
+                important: false,
+                id: this.maxId++
+            };
+        this.setState(({todoData}) => {
+                // todoDate.push(newItem);
+                const newArr = [
+                    ...todoData,
+                    newItem
+                ];
+
+                return {
+                    todoData: newArr
+                };
+            });
+        }
 
 
     render() {
@@ -47,7 +69,7 @@ import './app.css';
                 </div>
                 <TodoList todos={ this.state.todoData}
                           onDeleted = { this.deleteItem }/>
-                <ItemAddForm />
+                <ItemAddForm onItemAdded = {this.addItem } />
             </div>
         );
     };
