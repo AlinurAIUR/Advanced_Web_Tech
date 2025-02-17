@@ -50,7 +50,7 @@ import './app.css';
                 // todoDate.push(newItem);
                 const newArr = [
                     ...todoData,
-                    newItem
+                   nextItem
                 ];
 
                 return {
